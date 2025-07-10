@@ -38,67 +38,53 @@ const ChartTooltipContent = React.forwardRef<
     indicator?: "line" | "dot" | "dashed"
     nameKey?: string
     labelKey?: string
+    className?: string
   }
->(
-  (
-    {
-      active,
-      payload,
-      className,
-      indicator = "dot", // eslint-disable-line @typescript-eslint/no-unused-vars
-      hideLabel = false,
-      hideIndicator = false,
-      label,
-      labelKey,
-      nameKey,
-    },
-    ref,
-  ) => {
-    if (!active || !payload?.length) {
-      return null
-    }
+>(({ active, payload, hideLabel = false, hideIndicator = false, label, labelKey, nameKey, className }, ref) => {
+  if (!active || !payload?.length) {
+    return null
+  }
 
-    return (
-      <div
-        ref={ref}
-        className={cn(
-          "grid min-w-[8rem] items-start gap-1.5 rounded-lg border border-border/50 bg-background px-2.5 py-1.5 text-xs shadow-xl",
-          className,
-        )}
-      >
-        {!hideLabel && (
-          <p className="font-medium text-foreground">{labelKey ? payload[0]?.payload?.[labelKey] : label}</p>
-        )}
-        <div className="grid gap-1.5">
-          {payload.map((item, index) => (
-            <div
-              key={index}
-              className="flex w-full items-stretch gap-2 [&>svg]:h-2.5 [&>svg]:w-2.5 [&>svg]:text-muted-foreground"
-            >
-              {!hideIndicator && (
-                <div
-                  className="shrink-0 rounded-[2px] border-[--color-border] bg-[--color-bg]"
-                  style={{
-                    "--color-bg": item.color,
-                    "--color-border": item.color,
-                    width: "8px",
-                    height: "8px",
-                  }}
-                />
-              )}
-              <div className="flex flex-1 justify-between leading-none">
-                <div className="grid gap-1.5">
-                  <span className="text-muted-foreground">{nameKey ? item.payload[nameKey] : item.dataKey}</span>
-                </div>
-                <span className="font-mono font-medium tabular-nums text-foreground">{item.value}</span>
+  return (
+    <div
+      ref={ref}
+      className={cn(
+        "grid min-w-[8rem] items-start gap-1.5 rounded-lg border border-border/50 bg-background px-2.5 py-1.5 text-xs shadow-xl",
+        className,
+      )}
+    >
+      {!hideLabel && (
+        <p className="font-medium text-foreground">{labelKey ? payload[0]?.payload?.[labelKey] : label}</p>
+      )}
+      <div className="grid gap-1.5">
+        {payload.map((item, index) => (
+          <div
+            key={index}
+            className="flex w-full items-stretch gap-2 [&>svg]:h-2.5 [&>svg]:w-2.5 [&>svg]:text-muted-foreground"
+          >
+            {!hideIndicator && (
+              <div
+                className="shrink-0 rounded-[2px] border-[--color-border] bg-[--color-bg]"
+                style={{
+                  "--color-bg": item.color,
+                  "--color-border": item.color,
+                  width: "8px",
+                  height: "8px",
+                }}
+              />
+            )}
+            <div className="flex flex-1 justify-between leading-none">
+              <div className="grid gap-1.5">
+                <span className="text-muted-foreground">{nameKey ? item.payload[nameKey] : item.dataKey}</span>
               </div>
+              <span className="font-mono font-medium tabular-nums text-foreground">{item.value}</span>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
-    )
-  },
-)
+    </div>
+  )
+})
 ChartTooltipContent.displayName = "ChartTooltipContent"
 
 export { ChartContainer, ChartTooltip, ChartTooltipContent }
