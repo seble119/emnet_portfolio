@@ -16,7 +16,7 @@ export async function submitContactForm(formData: FormData) {
       throw new Error("All fields are required")
     }
 
-    const { data, error } = await resend.emails.send({
+    const { error } = await resend.emails.send({
       from: "Portfolio Contact <onboarding@resend.dev>",
       to: ["seble11994@gmail.com"], // Changed to your verified email
       subject: `Portfolio Contact: ${subject}`,

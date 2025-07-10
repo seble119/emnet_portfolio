@@ -45,7 +45,7 @@ const ChartTooltipContent = React.forwardRef<
       active,
       payload,
       className,
-      indicator = "dot",
+      indicator = "dot", // eslint-disable-line @typescript-eslint/no-unused-vars
       hideLabel = false,
       hideIndicator = false,
       label,

@@ -592,7 +592,7 @@ export default function EconomicsPortfolio() {
 
           <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12">
             <div className="space-y-8">
-              <h3 className="text-3xl font-semibold mb-6">{"Let's Connect"}</h3>
+              <h3 className="text-3xl font-semibold mb-6">Let&apos;s Connect</h3>
 
               <div className="space-y-6">
                 <div className="flex items-center space-x-4 group">
