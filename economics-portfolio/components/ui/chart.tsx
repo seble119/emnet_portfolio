@@ -64,13 +64,15 @@ const ChartTooltipContent = React.forwardRef<
           >
             {!hideIndicator && (
               <div
-                className="shrink-0 rounded-[2px] border-[--color-border] bg-[--color-bg]"
-                style={{
-                  "--color-bg": item.color,
-                  "--color-border": item.color,
-                  width: "8px",
-                  height: "8px",
-                }}
+                className="shrink-0 rounded-[2px]"
+                style={
+                  {
+                    backgroundColor: item.color,
+                    borderColor: item.color,
+                    width: "8px",
+                    height: "8px",
+                  } as React.CSSProperties
+                }
               />
             )}
             <div className="flex flex-1 justify-between leading-none">
